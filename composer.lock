@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "354ad3dbb2c38e167a9e69ac7d32a8f8",
+    "content-hash": "874f23708a2d88d061a95438560e0143",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1903,6 +1903,39 @@
                 }
             ],
             "time": "2020-07-23T08:41:23+00:00"
+        },
+        {
+            "name": "nehero/friendlytimezone",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nehero/friendlytimezone.git",
+                "reference": "83529683bbe56cc97af7572008fc3cf299326188"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nehero/friendlytimezone/zipball/83529683bbe56cc97af7572008fc3cf299326188",
+                "reference": "83529683bbe56cc97af7572008fc3cf299326188",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nehero\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ozzie Neher",
+                    "email": "oz.neher@gmail.com"
+                }
+            ],
+            "description": "Friendly timezones for php",
+            "time": "2017-01-01T19:14:56+00:00"
         },
         {
             "name": "nesbot/carbon",

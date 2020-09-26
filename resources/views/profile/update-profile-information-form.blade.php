@@ -65,6 +65,17 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+        
+        <!-- Timezone -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="timezone" value="{{ __('Timezone') }}" />
+            <select id="timezone" class="mt-1 block w-full form-input" wire:model.defer="state.timezone">
+                @foreach (\Nehero\FriendlyTimezone\Facade::get(['order' => 'asc']) as $label => $value)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+            <x-jet-input-error for="timezone" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

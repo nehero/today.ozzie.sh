@@ -7,8 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4 space-y-4">
+                <p>Today's web interface isn't ready yet</p>
+                <p>Please <a href="#" class="text-indigo-600">download the cli tool</a> to begin</p>
             </div>
         </div>
     </div>

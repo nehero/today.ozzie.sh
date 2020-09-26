@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Nehero\FriendlyTimezone\Facade as FriendlyTimezone;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
@@ -22,6 +23,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'image', 'max:1024'],
+            'timezone' => ['required', 'string', Rule::in(array_values(FriendlyTimezone::get()))],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -35,6 +37,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'timezone' => $input['timezone'],
             ])->save();
         }
     }
@@ -51,6 +54,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
+            'timezone' => $input['timezone'],
             'email_verified_at' => null,
         ])->save();
 
