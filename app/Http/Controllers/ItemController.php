@@ -10,7 +10,7 @@ class ItemController extends Controller
     public function index()
     {
         $user = request()->user();
-        $nowInTheirTimezone = Carbon::parse('now', $user->timezone);
+        $nowInTheirTimezone = Carbon::parse('now', $user->timezone)->startOfDay();
         $itemList = $user->itemLists()->whereDate('created_at', $nowInTheirTimezone->clone()->setTimezone('UTC'))->firstOrCreate([], ['name' => $nowInTheirTimezone->format('Y-m-d')]);
         return response()->json([
             'item_list' => $itemList,
@@ -24,7 +24,7 @@ class ItemController extends Controller
             'body' => ['required', 'string'],
         ]);
         $user = request()->user();
-        $nowInTheirTimezone = Carbon::parse('now', $user->timezone);
+        $nowInTheirTimezone = Carbon::parse('now', $user->timezone)->startOfDay();
         $itemList = $user->itemLists()->whereDate('created_at', $nowInTheirTimezone->clone()->setTimezone('UTC'))->firstOrCreate([], ['name' => $nowInTheirTimezone->format('Y-m-d')]);
         $item = $itemList->items()->create([
             'body' => $data['body'],
