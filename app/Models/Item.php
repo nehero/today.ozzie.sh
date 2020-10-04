@@ -12,6 +12,10 @@ class Item extends Model
 
     protected $guarded = [];
 
+    protected $dates = [
+        'completed_at',
+    ];
+
     public function itemList()
     {
         return $this->belongsTo(ItemList::class);
@@ -20,5 +24,11 @@ class Item extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function complete()
+    {
+        $this->attributes['completed_at'] = now();
+        $this->save();
     }
 }

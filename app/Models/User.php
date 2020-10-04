@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -63,5 +64,11 @@ class User extends Authenticatable
     public function itemLists()
     {
         return $this->hasMany(ItemList::class);
+    }
+
+    public function todaysList()
+    {
+        $nowInTheirTimezone = Carbon::parse('now', $this->attributes['timezone'])->startOfDay();
+        return $this->itemLists()->whereDate('created_at', $nowInTheirTimezone->clone()->setTimezone('UTC'))->firstOrCreate([], ['name' => $nowInTheirTimezone->format('Y-m-d')]);
     }
 }

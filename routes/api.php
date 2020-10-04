@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiKeyController;
+use App\Http\Controllers\CompleteItemController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post("api-keys", [ApiKeyController::class, 'store']);
 Route::group(['middleware' => 'auth:sanctum'], function() {
-  Route::post("api-keys", [ApiKeyController::class, 'store']);
   Route::get("items", [ItemController::class, 'index']);
   Route::post("items", [ItemController::class, 'store']);
+  Route::post("items/{item}/complete", CompleteItemController::class);
 });
